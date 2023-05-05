@@ -12,7 +12,8 @@ public class ProbarConexion {
         AccesoConsulta ac = new AccesoConsulta();
         try {
 //            c1.abrirConexion();
-            System.out.println(ac.consultarTodos());
+//            System.out.println(ac.consultarTodos());
+            System.out.println(ac.consultaUno(1));
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (SQLException e) {
