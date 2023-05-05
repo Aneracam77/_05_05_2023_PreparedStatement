@@ -2,10 +2,7 @@ package com.hedima.persistencia;
 
 import com.hedima.modelo.Producto;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,6 +98,31 @@ public class AccesoProductos extends Conexion{
         String sql = "insert into products (product_id,product_name,discontinued ) values (?,?,?);" ;
         abrirConexion();
         st = miConexion.prepareStatement(sql);
+        st.setInt(1,p.getProducto_id());
+        st.setString(2, p.getNombre());
+        st.setInt(3,1);
+        resultado  = st.executeUpdate();
+
+        st.close();
+        cerrar();
+        return resultado;
+    }
+
+    public int insertarProductoPA(Producto p) throws SQLException, ClassNotFoundException {
+         /*
+        1. Declarar variables
+        2. Abrir la conexion
+        3. Recoger de la conexion del statement
+        4. Ejecutar el Statement
+        5. Cerrar todo
+        6. devolver el resultado
+         */
+        CallableStatement st;
+
+        int resultado;
+        String sql = "CALL insertar_producto(?, '?, ?);" ;
+        abrirConexion();
+        st = miConexion.prepareCall(sql);
         st.setInt(1,p.getProducto_id());
         st.setString(2, p.getNombre());
         st.setInt(3,1);
