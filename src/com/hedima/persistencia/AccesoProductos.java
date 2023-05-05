@@ -120,7 +120,7 @@ public class AccesoProductos extends Conexion{
         CallableStatement st;
 
         int resultado;
-        String sql = "CALL insertar_producto(?, '?, ?);" ;
+        String sql = "CALL insertar_producto(?, ?, ?);" ;
         abrirConexion();
         st = miConexion.prepareCall(sql);
         st.setInt(1,p.getProducto_id());
